@@ -12,6 +12,7 @@ require("dotenv").config();
 require("./db/init");
 
 const navbarRouter = require("./routes/navbar");
+const channelRouter = require('./routes/channel')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // 使用路由中间件
 app.use("/api/navbar", navbarRouter);
+app.use('/api/channel', channelRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

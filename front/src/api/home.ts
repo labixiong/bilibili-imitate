@@ -9,3 +9,13 @@ export function getNavbarList() {
     method: 'GET'
   })
 }
+
+/**
+ * 频道列表
+ */
+export function getChannelList() {
+  return request({
+    url: '/api/channel',
+    method: 'GET'
+  })
+}

@@ -28,8 +28,6 @@ service.interceptors.request.use(
 // 响应拦截
 service.interceptors.response.use(
   (response) => {
-    console.log(response, 'response');
-    
     // 拦截到响应后，可以做各种判断
     const res = response.data;
     return res;

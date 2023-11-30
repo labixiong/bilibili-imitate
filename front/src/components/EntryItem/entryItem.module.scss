@@ -1,0 +1,42 @@
+@import '../../styles/mixins.scss';
+
+.container {
+  border: 1px solid red;
+  margin-right: 20px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  margin-right: 5px;
+}
+
+.title {
+  @include flex($justify: center, $itemsAlign: center);
+  font-size: 14px;
+  color: rgba($color: #000, $alpha: 0.5);
+  font-weight: bolder;
+  cursor: pointer;
+  line-height: 64px;
+  cursor: pointer;
+
+  &:hover {
+    animation: jump .3s;
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
