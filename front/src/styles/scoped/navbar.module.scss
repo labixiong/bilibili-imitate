@@ -1,12 +1,11 @@
 @import '../mixins.scss';
+@import '../variables.scss';
 
 .container {
-  border: 1px solid red;
   @include flex($justify: space-between, $itemsAlign: center);
   position: absolute;
   top: 0;
   height: 64px;
-  // line-height: 64px;
   padding: 0 24px;
   max-width: 2560px;
   z-index: 1002;
@@ -23,10 +22,52 @@
 .right-entry {
   @include flex();
   height: 100%;
+
+  .avatar-wrapper {
+    $width: 50px;
+
+    border: 1px solid red;
+    width: $width;
+    height: $width;
+    line-height: $width;
+    text-align: center;
+    font-size: 14px;
+    color: $text2;
+    padding: 5px;
+
+    .avatar-entry {
+      $childWidth: calc($width - 10px);
+      height: $childWidth;
+      border: 1px solid red;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      width: $childWidth;
+      line-height: $childWidth;
+      cursor: pointer;
+
+      &:hover {
+        animation: jump .3s;
+      }
+    }
+  }
 }
 
 .center-search-container {
   // border: 1px solid red;
   height: 38px;
   flex: 1 auto;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }

@@ -92,6 +92,12 @@ video {
   vertical-align: baseline;
 }
 
+body *,
+body *:before,
+body *:after {
+  box-sizing: border-box;
+}
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -132,4 +138,23 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(206, 209, 217, 1);
+  min-height: 25px;
+  min-width: 25px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
 }

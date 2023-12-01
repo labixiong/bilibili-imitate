@@ -1,1 +1,24 @@
-$mainColor: ''
+:root {
+  --layout-padding: 140px;
+  --bg1: #fff;
+  --text1: #18191C;
+  --texr2: #61666D;
+  --line-regular: #E3E5E7;
+  --line-light: #F1F2F3;
+  --graph_bg_thin: #F6F7F8;
+}
+
+$mainColor: '';
+$bg1: var(--bg1);
+
+$text1: var(--text1);
+$text2: var(--texr2);
+
+$lineRegular: var(--line-regular);
+$lineLight: var(--line-light);
+
+$graphBgThin: var(--graph_bg_thin);
+
+
+
+$layoutPadding: var(--layout-padding);

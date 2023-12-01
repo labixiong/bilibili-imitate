@@ -1,11 +1,9 @@
-import React from 'react'
+import styles from '../styles/scoped/content.module.scss'
 
 export default function Content(props: any) {
   return (
-    <div>
-      <main>
-        {props.children}
-      </main>
-    </div>
+    <main className={styles.container}>
+      {props.children}
+    </main>
   )
 }

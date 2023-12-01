@@ -1,0 +1,8 @@
+@import '../variables.scss';
+
+.container {
+  border: 1px solid red;
+  margin: 0 auto;
+  padding: 0 $layoutPadding;
+  max-width: calc(1980px + 2 * $layoutPadding);
+}
