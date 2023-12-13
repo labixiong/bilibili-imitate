@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
   baseURL: "http://localhost:3000",
-  timeout: 5000,
+  timeout: 10000,
 });
 
 // 请求拦截
@@ -11,10 +11,10 @@ service.interceptors.request.use(
     // 拦截到请求后，这里就可以做各种事情
     // 一般是添加 token
     // 从本地拿到 userToken
-    // const token = localStorage.getItem("userToken");
-    // if(token){
-    //   config.headers['Authorization'] = "Bearer " + token;
-    // }
+    const token = localStorage.getItem("userToken");
+    if(token){
+      config.headers['Authorization'] = "Bearer " + token;
+    }
     
     // 请求放行
     return config;

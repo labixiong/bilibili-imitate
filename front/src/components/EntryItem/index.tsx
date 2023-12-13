@@ -21,9 +21,11 @@ export default function EntryItem(props: ValidateProps) {
     props.click(props.dataSource, e)
   }
 
+  const aClass = props.class ? styles[props.class] : props.layout === 'row' ? styles.title : styles.title2
+
   return (
-    <div className={styles.container} onClick={(e: SyntheticEvent) => handleClick(e)}>
-      <a href={props.dataSource.href} className={props.class ? styles[props.class] : props.layout === 'row' ? styles.title : styles.title2} style={{ flexDirection: props.layout }}>
+    <div className={[styles.container, props.className].join(' ')} onClick={(e: SyntheticEvent) => handleClick(e)}>
+      <a href={props.dataSource.href} className={['abc', aClass].join(' ')} style={{ flexDirection: props.layout, justifyContent: props.className ? 'flex-start' : 'center' }}>
         <div style={{ visibility: isShowIcon ? 'visible' : 'hidden' }} className={styles.icon}>
           i
         </div>

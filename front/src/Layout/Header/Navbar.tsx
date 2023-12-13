@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import SearchBar from '../../components/SearchBar'
 import EntryItem from '../../components/EntryItem/index'
 import styles from '../../styles/scoped/navbar.module.scss'
+import LoginAvatar from '../../components/LoginAvatar'
 
 export default function Home() {
   const dispatch = useAppDispatch()
@@ -31,26 +32,20 @@ export default function Home() {
       dataSource={item} key={item._id}
     />
   ))
-
-
-  /**
-   * 搜索框聚焦事件
-   */
-  function handleInputFocus() {}
+  const rightNodeList = rightList.map((item: ValidateNavbar) => (
+    <EntryItem layout='column' dataSource={item} key={item._id} />
+  ))
 
   // 投稿
   function handleSubmit() {
     navigate('/postfile')
   }
 
-  // 登录函数
-  function handleLogin() {
-    setIsShowOpen(true)
-  }
-
   function handleNavbarItemClick(item: ValidateNavbar, e: SyntheticEvent): void {
     if(item.title === '首页') {
       navigate('/')
+    } else if(item.title === '会员购') {
+      navigate('/purchase')
     }
   }
 
@@ -63,12 +58,8 @@ export default function Home() {
         <SearchBar></SearchBar>
       </div>
       <div className={styles['right-entry']}>
-        <div className={styles['avatar-wrapper']} onClick={handleLogin}>
-          <div className={styles['avatar-entry']}>登录</div>
-        </div>
-        {
-          rightList.map((item: ValidateNavbar) => (<EntryItem layout='column' dataSource={item} key={item._id} />))
-        }
+        <LoginAvatar></LoginAvatar>
+        {rightNodeList}
       </div>
       <div>
         <Button type="primary" icon={<UploadOutlined />} size='large' onClick={handleSubmit}>投稿</Button>
