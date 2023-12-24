@@ -1,7 +1,7 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/reDefine'
 import { getNavbarListAsync } from '../../store/homeSlice'
-import { Button, Modal } from 'antd'
+import { Button, Modal, message } from 'antd'
 import { ValidateNavbar } from '../../types/ValidateApi'
 import { UploadOutlined } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
@@ -14,7 +14,9 @@ import LoginAvatar from '../../components/LoginAvatar'
 export default function Home() {
   const dispatch = useAppDispatch()
   const { navbarList } = useAppSelector(state => state.home)
+  const { isLogin, userInfo } = useAppSelector(state => state.user)
   const [isModalOpen, setIsShowOpen] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -38,7 +40,14 @@ export default function Home() {
 
   // 投稿
   function handleSubmit() {
-    navigate('/postfile')
+    // 由内部展示跳转到另一个页面
+    // navigate('/postfile')
+    if(isLogin) {
+      window.open('http://localhost:8080/')
+    } else {
+      message.warning('请先登录！')
+      setShowLogin(true)
+    }
   }
 
   function handleNavbarItemClick(item: ValidateNavbar, e: SyntheticEvent): void {
@@ -47,6 +56,11 @@ export default function Home() {
     } else if(item.title === '会员购') {
       navigate('/purchase')
     }
+  }
+
+  // 取消展示login登录弹框
+  function handleCancelLogin(value: boolean) {
+    setShowLogin(value)
   }
 
   return (
@@ -58,7 +72,7 @@ export default function Home() {
         <SearchBar></SearchBar>
       </div>
       <div className={styles['right-entry']}>
-        <LoginAvatar></LoginAvatar>
+        <LoginAvatar show={showLogin} cancel={handleCancelLogin}></LoginAvatar>
         {rightNodeList}
       </div>
       <div>

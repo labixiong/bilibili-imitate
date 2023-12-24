@@ -12,7 +12,6 @@ import { initUserInfo, changeLoginStatus, clearUserInfo } from '../../store/user
 import { useNavigate } from 'react-router-dom'
 
 export default function LoginAvatar(props: { [propName: string]: any }) {
-
   const { userInfo, isLogin } = useAppSelector((state) => state.user)
   // let content = null
   // let afterLoginContent = [
@@ -139,6 +138,12 @@ export default function LoginAvatar(props: { [propName: string]: any }) {
 		setLoginInfo(obj);
 	}
 
+	// 弹框取消展示
+	function handleModalCancel() {
+		setIsModalOpen(false)
+		props.cancel(false)
+	}
+
   return (
     <div className={styles.container}>
       {/* <div className={styles['avatar-container']} onClick={() => setIsModalOpen(userInfo ? false : true)}>
@@ -149,7 +154,7 @@ export default function LoginAvatar(props: { [propName: string]: any }) {
 
 			{loginStatus}
 
-      <Modal footer={false} title='登录' open={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+      <Modal footer={false} title='登录' open={isModalOpen || props.show} onOk={() => setIsModalOpen(false)} onCancel={handleModalCancel}>
       	<Form
 					name="basic1"
 					autoComplete="off"
